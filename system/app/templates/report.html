@@ -1,0 +1,82 @@
+{% extends 'header.html' %}
+
+{% block content %}
+{% include 'sidebar.html' %}
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="pe-7s-cart icon-gradient bg-mean-fruit">
+                        </i>
+                    </div>
+                    <div>Welcome to Katisbo.AI System
+                        <div class="page-title-subheading">AI Powered Agricultural Inventory System
+                        </div>
+                    </div>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="page-title-actions">
+                    <button type="button" aria-haspopup="true" aria-expanded="false"
+                        class="btn-shadow dropdown-toggle btn btn-info">
+                        <span class="btn-icon-wrapper pr-2 opacity-7">
+                            <i class="fa fa-business-time fa-w-20"></i>
+                        </span>
+                        Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Sales Report</h5>
+                    <table style="width:100%;" class="mb-0 table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product Name</th>
+                               
+                                
+                                <th>Selling Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r in reports %}
+                            <tr>
+                                <th scope="row">{{r.id}}</th>
+                                <td>{{r.products}}</td>
+                                
+                                
+                                <td>{{r.selling_price}}</td>
+                                <td>{{r.quantity}}</td>
+                                
+                                <td>{{r.Total_sales}}</td>
+                                <td>{{r.date_created}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-lg-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <p>Sorry you must be logged in to access this page</p>
+                    <a href="{% url 'login' %}"> <h5 class="card-title"> Login</h5></a> 
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

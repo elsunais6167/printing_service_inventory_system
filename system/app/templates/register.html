@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Sign Up</h1>
+                        </div>
+                        {% if form.errors %}
+                            <p>There was an error in your form</p>
+                        {% endif %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {{form|crispy}}
+                            <div class="form-group row">
+                                <input type="submit" class="btn btn-primary btn-lg btn-block" name="Submit">
+                            </div>
+                        </div>
+                        </form>
+                        <div class="text-center">
+                            <p>If you are a registered user</p>
+                        <a href="{% url 'login' %}"><h3 class="h4 text-gray-900 mb-4">Login Here!</h3></a>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content%}
