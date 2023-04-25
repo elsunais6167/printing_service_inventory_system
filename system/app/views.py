@@ -203,12 +203,9 @@ def  create_category(request):
 
 #@login_required
 def  sale_item(request):
-    user = request.user
-    # Filter sales by user
-    prod = Product.objects.filter(user_id=user.id)
-    form = SaleForm(products=prod)
+    form = SaleForm()
     if request.method == "POST":
-        form = SaleForm(request.POST, products=prod)
+        form = SaleForm(request.POST)
         if form.is_valid():
             user = request.user
             # Create a new product and set the user field

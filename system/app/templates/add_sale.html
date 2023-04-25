@@ -43,7 +43,18 @@
                         
                         <form action="" method="POST">
                             {% csrf_token %}
-                            {{form|crispy}}
+                            <div class="form-group">
+                                <label for="{{ form.products.id_for_label }}">Products:</label>
+                                {{ form.products }}
+                              </div>
+                              <div class="form-group">
+                                <label for="{{ form.product_price.id_for_label }}">Product Price:</label>
+                                {{ form.product_price }}
+                              </div>
+                              <div class="form-group">
+                                <label for="{{ form.quantity.id_for_label }}">Quantity:</label>
+                                {{ form.quantity }}
+                              </div>
                             <div class="form-group row">
                                 <input type="submit" class="btn btn-success btn-lg btn-block" name="Submit">
                             </div>

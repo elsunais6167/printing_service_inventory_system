@@ -48,18 +48,10 @@ class SaleForm(ModelForm):
     class Meta:
         model = Sale
         fields = ['products', 'product_price', 'quantity']
-
-    def __init__(self, *args, **kwargs):
-        products = kwargs.pop('products')
-        super().__init__(*args, **kwargs)
-        self.fields['products'].queryset = products
-
+        widgets = {
+            'products': forms.Select(),
+            }
 class OfferedForm(ModelForm):
     class Meta:
         model = Offered
         fields = ['service', 'service_cost', 'quantity']
-
-    def __init__(self, *args, **kwargs):
-        service = kwargs.pop('service')
-        super().__init__(*args, **kwargs)
-        self.fields['service'].queryset = service
