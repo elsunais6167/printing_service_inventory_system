@@ -27,13 +27,13 @@ class CategoryForm(ModelForm):
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['product_name', 'product_category', 'buying_price', 'product_quantity']
-    
+        fields = ['product_name', 'product_category', 'buying_price', 'selling_price', 'product_quantity']
+    '''
     def __init__(self, *args, **kwargs):
         prod_cat = kwargs.pop('product_category')
         super().__init__(*args, **kwargs)
         self.fields['product_category'].queryset = prod_cat
-
+    '''
 class ServiceForm(ModelForm):
     class Meta:
         model = Service

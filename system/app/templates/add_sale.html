@@ -30,50 +30,51 @@
                 </div>
             </div>
         </div>
-<div class="container">
-    {% if user.is_authenticated %}
-    <div class="card o-hidden border-0 shadow-lg my-5">
-        <div class="card-body p-0">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="p-5">
-                        <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Cart</h1>
+        <div class="container">
+            {% if user.is_authenticated %}
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Cart</h1>
+                                </div>
+                                <form class="row g-3" action="" method="POST">
+                                    {% csrf_token %}
+                                    <div class="col-auto">
+                                      {{ form.products }}
+                                    </div>
+                                    <div class="col-auto">
+                                      <input type="text" name="{{ form.product_price.name }}" id="" value="">
+                                    </div>
+                                    <div class="col-auto">
+                                      <input type="text" name="{{ form.quantity.name }}" id="" value="">
+                                    </div>
+                                    <div class="col-auto">
+                                      <div class="form-group">
+                                        <input type="submit" class="btn btn-success btn-lg btn-block" name="Submit">
+                                      </div>
+                                    </div>
+                                  </form>
+                                  
+                                  
                         </div>
-                        
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="{{ form.products.id_for_label }}">Products:</label>
-                                {{ form.products }}
-                              </div>
-                              <div class="form-group">
-                                <label for="{{ form.product_price.id_for_label }}">Product Price:</label>
-                                {{ form.product_price }}
-                              </div>
-                              <div class="form-group">
-                                <label for="{{ form.quantity.id_for_label }}">Quantity:</label>
-                                {{ form.quantity }}
-                              </div>
-                            <div class="form-group row">
-                                <input type="submit" class="btn btn-success btn-lg btn-block" name="Submit">
-                            </div>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-        {% else %}
-        <div class="col-lg-12">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <p>Sorry you must be logged in to access this page</p>
-                    <a href="{% url 'login' %}"> <h5 class="card-title"> Login</h5></a> 
+            {% else %}
+            <div class="col-lg-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <p>Sorry you must be logged in to access this page</p>
+                        <a href="{% url 'login' %}">
+                            <h5 class="card-title"> Login</h5>
+                        </a>
+                    </div>
                 </div>
             </div>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
-</div>
-{% endblock content%}
+    {% endblock content%}

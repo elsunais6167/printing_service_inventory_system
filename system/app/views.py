@@ -67,7 +67,7 @@ def sale(request):
 #@login_required
 def category(request):
     user = request.user
-    categories = Category.objects.filter(user_id=user.id)
+    categories = Category.objects.all()
 
     pagination = Paginator(categories, 10)
     page_num = request.GET.get('page')
@@ -79,7 +79,7 @@ def category(request):
 #@login_required
 def product(request):
     user = request.user
-    products = Product.objects.filter(user_id=user.id)
+    products = Product.objects.all()
 
 
     pagination = Paginator(products, 10)
@@ -163,12 +163,10 @@ def  create_customer(request):
 
 #@login_required
 def create_product(request):
-    user = request.user
-    # Filter sales by user
-    prod_cat = Category.objects.filter(user_id=user.id)
-    form = ProductForm(prod_cat=prod_cat)
+    
+    form = ProductForm()
     if request.method == "POST":
-        form = ProductForm(request.POST, prod_cat=prod_cat)
+        form = ProductForm(request.POST)
         if form.is_valid():
             # Get the current user
             user = request.user
